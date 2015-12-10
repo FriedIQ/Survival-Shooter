@@ -2,13 +2,13 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float _speed = 6f;
+    public float Speed = 6f;
 
     Vector3 _movement;
     Animator _animator;
     Rigidbody _ridgidbody;
     int _floorMask;
-    float _camRayLength = 100f;
+    private const float _camRayLength = 100f;
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Move(float h, float v)
     {
         _movement.Set(h, 0f, v);
-        _movement = _movement.normalized * _speed * Time.deltaTime;
+        _movement = _movement.normalized * Speed * Time.deltaTime;
 
         _ridgidbody.MovePosition(transform.position + _movement);
     }
