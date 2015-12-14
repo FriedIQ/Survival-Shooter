@@ -4,11 +4,8 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static int score;
-
-
+    static int score;
     Text text;
-
 
     void Awake ()
     {
@@ -16,9 +13,13 @@ public class ScoreManager : MonoBehaviour
         score = 0;
     }
 
-
     void Update ()
     {
-        text.text = "Score: " + score;
+        text.text = string.Format("Score: {0}", score);
+    }
+
+    public static void Score(int amount)
+    {
+        score += amount;
     }
 }

@@ -3,14 +3,15 @@
 public class GameOverManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
+    public float restartDelay = 5f;
 
-
-    Animator anim;
+    Animator animator;
+    public float restartTimer;
 
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
 
@@ -18,7 +19,14 @@ public class GameOverManager : MonoBehaviour
     {
         if (playerHealth.currentHealth <= 0)
         {
-            anim.SetTrigger("GameOver");
+            animator.SetTrigger("GameOver");
+
+            restartTimer += Time.deltaTime;
+
+            if(restartTimer >= restartDelay )
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
         }
     }
 }
